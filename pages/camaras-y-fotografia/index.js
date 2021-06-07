@@ -4,6 +4,7 @@ import dynamic from 'next/dynamic'
 import { Grid } from '@material-ui/core'
 import { createClient } from 'contentful'
 import ProductAmazonCardContainer from '../../containers/ProductAmazonCardContainer'
+import Skeleton from '../../components/Skeleton'
 
 const Layout = dynamic(() => import('../../components/Layout'))
 
@@ -28,6 +29,8 @@ export const getStaticProps = async () => {
 const useStyles = makeStyles(theme => ({}))
 
 export default function CamaraYFotografia({ products }) {
+  if (!products) return <Skeleton />
+
   const classes = useStyles()
 
   return (
