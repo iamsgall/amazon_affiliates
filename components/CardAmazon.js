@@ -52,7 +52,7 @@ export default function CardAmazon({
   thumbnail2,
   titleProduct,
   price,
-  bestSeller,
+  // bestSeller,
 }) {
   const classes = useStyles()
 

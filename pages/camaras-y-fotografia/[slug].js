@@ -207,7 +207,7 @@ export default function CamaraYFotografiaDetails({ product }) {
               thumbnail2={thumbnail2}
               titleProduct={titleProduct}
               price={price}
-              bestSeller={bestSeller}
+              // bestSeller={bestSeller}
             />
           </div>
           <div className={classes.advantages}>
