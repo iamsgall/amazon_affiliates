@@ -15,6 +15,7 @@ import { documentToReactComponents } from '@contentful/rich-text-react-renderer'
 import CardAmazon from '../../components/CardAmazon'
 import CardImages from '../../components//CardImages'
 import Link from 'next/link'
+import Skeleton from '../../components/Skeleton'
 
 const client = createClient({
   space: process.env.CONTENTFUL_SPACE_ID,
@@ -112,6 +113,8 @@ const useStyles = makeStyles(theme => ({
 }))
 
 export default function CamaraYFotografiaDetails({ product }) {
+  if (!product) return <Skeleton />
+
   const {
     titleH1,
     slug,
