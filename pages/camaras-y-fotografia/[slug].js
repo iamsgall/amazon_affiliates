@@ -1,6 +1,6 @@
 import dynamic from 'next/dynamic'
 const Layout = dynamic(() => import('../../components/Layout'))
-const CardImages = dynamic(() => import('../../components/CardImages'))
+
 import { makeStyles } from '@material-ui/core/styles'
 import {
   Container,
@@ -13,6 +13,7 @@ import Image from 'next/image'
 import { createClient } from 'contentful'
 import { documentToReactComponents } from '@contentful/rich-text-react-renderer'
 import CardAmazon from '../../components/CardAmazon'
+import CardImages from '../../components//CardImages'
 import Link from 'next/link'
 
 const client = createClient({
