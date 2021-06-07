@@ -9,6 +9,7 @@ import dynamic from 'next/dynamic'
 const Layout = dynamic(() => import('../components/Layout.js'))
 import { makeStyles } from '@material-ui/core/styles'
 import CardCategories from '../components/CardCategories.js'
+import { useRouter } from 'next/router'
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -23,9 +24,13 @@ const useStyles = makeStyles(theme => ({
   categoryItems: {
     marginTop: 20,
   },
+  category: {
+    cursor: 'pointer',
+  },
 }))
 export default function Home() {
   const classes = useStyles()
+  const router = useRouter()
   return (
     <Layout title='test' description='test'>
       <div className={classes.root}>
@@ -69,12 +74,31 @@ export default function Home() {
               // wrap='nowrap'
               className={classes.categoryItems}
             >
-              <Grid item xs={12} sm={6} md={4} lg={3}>
+              <Grid
+                item
+                xs={12}
+                sm={6}
+                md={4}
+                lg={3}
+                className={classes.category}
+                onClick={() => router.push('/belleza')}
+              >
                 <CardCategories category='Belleza' />
               </Grid>
-              <Grid item xs={12} sm={6} md={4} lg={3}>
+              <Grid
+                item
+                xs={12}
+                sm={6}
+                md={4}
+                lg={3}
+                className={classes.category}
+                onClick={() => router.push('/camaras-y-fotografia')}
+              >
                 <CardCategories category='Cámaras y fotografía' />
               </Grid>
+
+              {/* TODO: */}
+              {/* Falta agregar la classe y el evento onCLick al resto de elementos */}
               <Grid item xs={12} sm={6} md={4} lg={3}>
                 <CardCategories category='Teléfonos y accesorios' />
               </Grid>
@@ -94,7 +118,7 @@ export default function Home() {
                 <CardCategories category='Electrodomésticos' />
               </Grid>
               <Grid item xs={12} sm={6} md={4} lg={3}>
-                <CardCategories category='Instrumentos musica' />
+                <CardCategories category='Instrumentos música' />
               </Grid>
               <Grid item xs={12} sm={6} md={4} lg={3}>
                 <CardCategories category='Oficina y papelería' />
