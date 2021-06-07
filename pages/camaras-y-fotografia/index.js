@@ -3,9 +3,8 @@ import { makeStyles } from '@material-ui/core/styles'
 import dynamic from 'next/dynamic'
 import { Grid } from '@material-ui/core'
 import { createClient } from 'contentful'
-const ProductAmazonCardContainer = dynamic(() =>
-  import('../../containers/ProductAmazonCardContainer')
-)
+import ProductAmazonCardContainer from '../../containers/ProductAmazonCardContainer'
+
 const Layout = dynamic(() => import('../../components/Layout'))
 
 export const getStaticProps = async () => {
