@@ -3,6 +3,7 @@ const Layout = dynamic(() => import('../../components/Layout'))
 
 import { makeStyles } from '@material-ui/core/styles'
 import {
+  Box,
   Container,
   CssBaseline,
   Grid,
@@ -16,6 +17,7 @@ import CardAmazon from '../../components/CardAmazon'
 import CardImages from '../../components//CardImages'
 import Link from 'next/link'
 import Skeleton from '../../components/Skeleton'
+import ListImages from '../../components/ListImages'
 
 const client = createClient({
   space: process.env.CONTENTFUL_SPACE_ID,
@@ -109,8 +111,33 @@ const useStyles = makeStyles(theme => ({
   },
   brands: {
     marginTop: 20,
+    marginBottom: 20,
   },
 }))
+
+const imagesData = [
+  {
+    imageUrl:
+      'https://images-na.ssl-images-amazon.com/images/I/51S4gnK6MtL._AC_SL1001_.jpg',
+    brand: 'Victure',
+    price: '25.99',
+    url: 'https://amz.run/4e3V',
+  },
+  {
+    imageUrl:
+      'https://images-na.ssl-images-amazon.com/images/I/61sRNIlrGWL._AC_SL1500_.jpg',
+    brand: 'EZVIZ',
+    price: '26.99',
+    url: 'https://amz.run/4e3T',
+  },
+  {
+    imageUrl:
+      'https://images-na.ssl-images-amazon.com/images/I/51RAiKC4hgL._AC_SL1500_.jpg',
+    brand: 'eufy',
+    price: '49.99',
+    url: 'https://amz.run/4e3l',
+  },
+]
 
 export default function CamaraYFotografiaDetails({ product }) {
   if (!product) return <Skeleton />
@@ -151,33 +178,32 @@ export default function CamaraYFotografiaDetails({ product }) {
     <Layout title='test' description='test'>
       <div className={classes.root}>
         <CssBaseline />
-        <Container maxWidth='lg'>
+        <Container maxWidth='md'>
           <Typography
             variant='h2'
             component='h1'
             align='center'
             className={classes.title}
           >
-            {titleH1} (Title H1 👈)
+            {titleH1}
           </Typography>
           <div className={classes.banner}>
             <Image
               src={`https:${thumbnail.fields.file.url}`}
-              width={900}
-              height={480}
+              width={thumbnail.fields.file.details.image.width}
+              height={thumbnail.fields.file.details.image.height}
             />
           </div>
-          <span className={classes.banner}>(Thumbnail1 👆)</span>
+          <span className={classes.banner}></span>
           <Typography variant='body1' className={classes.body} component='span'>
-            (contentTitle 👇)
             {documentToReactComponents(contentTitle)}
           </Typography>
           <div className={classes.images}>
             <CssBaseline />
-            <Container maxWidth='lg'>
+            <Container maxWidth='md'>
               <Grid
                 container
-                spacing={4}
+                spacing={2}
                 direction='row'
                 justify='center'
                 alignItems='center'
@@ -185,7 +211,7 @@ export default function CamaraYFotografiaDetails({ product }) {
                 // wrap='nowrap'
               >
                 {imagesProduct.map(image => (
-                  <Grid key={image.sys.id} item xs={12} sm={6} md={4} lg={3}>
+                  <Grid key={image.sys.id} item xs={12} sm={6} md={4} lg={4}>
                     <CardImages image={image} />
                   </Grid>
                 ))}
@@ -194,14 +220,13 @@ export default function CamaraYFotografiaDetails({ product }) {
           </div>
           <div className={classes.characteristics}>
             <Typography variant='h2' align='center'>
-              {characteristicsH2} (CharactH2 👈)
+              {characteristicsH2}
             </Typography>
             <Typography
               variant='body1'
               className={classes.body}
               component='span'
             >
-              (contentCharacteristics 👇)
               {documentToReactComponents(contentCharacteristics)}
             </Typography>
           </div>
@@ -209,20 +234,19 @@ export default function CamaraYFotografiaDetails({ product }) {
             <CardAmazon
               thumbnail2={thumbnail2}
               titleProduct={titleProduct}
-              price={price}
+              price={price.toFixed(2)}
               // bestSeller={bestSeller}
             />
           </div>
           <div className={classes.advantages}>
             <Typography variant='h2' align='center'>
-              {advantagesH2} (advantH2 👈)
+              {advantagesH2}
             </Typography>
             <Typography
               variant='body1'
               className={classes.body}
               component='span'
             >
-              (contentAdvantages 👇)
               {documentToReactComponents(contentAdvantages)}
             </Typography>
           </div>
@@ -241,42 +265,40 @@ export default function CamaraYFotografiaDetails({ product }) {
           </div>
           <div className={classes.disadvantages}>
             <Typography variant='h2' align='center'>
-              {disadvantagesH2} (disadvsH2 👈)
+              {disadvantagesH2}
             </Typography>
             <Typography
               variant='body1'
               className={classes.body}
               component='span'
             >
-              (contentDisadvantages 👇)
               {documentToReactComponents(contentDisadvantages)}
             </Typography>
           </div>
 
-          <div className={classes.offers}>
+          {/* <div className={classes.offers}>
             <Typography variant='h2' align='center'>
-              {otherOffersH2} (otherOffH2 👈)
+              {otherOffersH2}
             </Typography>
             <p>
               <strong style={{ backgroundColor: 'yellow', padding: 8 }}>
                 Ahora no importa. Solo Cuando tengamos link de afiliacion
-              </strong>
+              </strong> 
             </p>
-          </div>
+          </div> */}
           <div className={classes.disadvantages}>
             <Typography variant='h2' align='center'>
-              {forWhoH2} (forWhoH2 👈)
+              {forWhoH2}
             </Typography>
             <Typography
               variant='body1'
               className={classes.body}
               component='span'
             >
-              (forWhoContent 👇)
               {documentToReactComponents(forWhoContent)}
             </Typography>
           </div>
-          <div className={classes.colors}>
+          {/* <div className={classes.colors}>
             <Typography variant='h2' align='center'>
               {pickByColorH2} (pickColorH2 👈)
             </Typography>
@@ -285,16 +307,17 @@ export default function CamaraYFotografiaDetails({ product }) {
                 Ahora no importa. Solo Cuando tengamos link de afiliacion
               </strong>
             </p>
-          </div>
+          </div> */}
           <div className={classes.brands}>
-            <Typography variant='h2' align='center'>
-              {brandsH2} (brandsH2 👈)
-            </Typography>
-            <p>
-              <strong style={{ backgroundColor: 'pink', padding: 8 }}>
-                Aqui iran imagenes con el nombre de la marca para el SEO (H3)
-              </strong>
-            </p>
+            <CssBaseline />
+            <Container maxWidth='sm'>
+              <Typography variant='h2' align='center'>
+                {brandsH2}
+              </Typography>
+              <Box boxShadow={1}>
+                <ListImages imagesData={imagesData} />
+              </Box>
+            </Container>
           </div>
         </Container>
       </div>

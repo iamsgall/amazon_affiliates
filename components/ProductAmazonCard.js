@@ -30,8 +30,12 @@ const useStyles = makeStyles(theme => ({
     height: 0,
     paddingTop: '56.25%', // 16:9
   },
-  avatar: {
+  avatarAC: {
     backgroundColor: '#012F36',
+    color: '#fff',
+  },
+  avatarBS: {
+    backgroundColor: '#E67A00',
     color: '#fff',
   },
   star: {
@@ -84,19 +88,31 @@ export default function ProductAmazonCard({ product }) {
         <CardActionArea
           onClick={() => router.push(`/camaras-y-fotografia/${slug}`)}
         >
-          <CardHeader
-            avatar={
-              <Avatar aria-label='recipe' className={classes.avatar}>
-                AC
-              </Avatar>
-            }
-            title={titleProduct}
-            subheader="Amazon's
+          {!bestSeller ? (
+            <CardHeader
+              avatar={
+                <Avatar aria-label='recipe' className={classes.avatarAC}>
+                  AC
+                </Avatar>
+              }
+              title={titleProduct}
+              subheader="Amazon's
           Choice"
-          />
+            />
+          ) : (
+            <CardHeader
+              avatar={
+                <Avatar aria-label='recipe' className={classes.avatarBS}>
+                  BS
+                </Avatar>
+              }
+              title={titleProduct}
+              subheader='Best Seller'
+            />
+          )}
           <CardMedia
             className={classes.media}
-            image={`https:${thumbnail.fields.file.url}`}
+            image={`https:${thumbnail2.fields.file.url}`}
             title='Paella dish'
           />
           <CardContent style={{ marginTop: 8, marginBottom: 8 }}>
@@ -143,17 +159,17 @@ export default function ProductAmazonCard({ product }) {
             </Grid>
             <Grid item xs={4} sm={4} md={4} lg={4} style={{ marginBottom: 6 }}>
               <Typography variant='body2' color='textSecondary'>
-                4.5 / 5
+                {rating}.5 / 5
               </Typography>
             </Grid>
             <Grid item xs={4} sm={4} md={4} lg={4} style={{ marginBottom: 6 }}>
               <Typography variant='body2' color='textSecondary'>
-                3.662
+                {reviews}
               </Typography>
             </Grid>
             <Grid item xs={4} sm={4} md={4} lg={4} style={{ marginBottom: 6 }}>
               <Typography variant='body1' color='textSecondary'>
-                <strong>€ 25.99</strong>
+                <strong>€ {price.toFixed(2)}</strong>
               </Typography>
             </Grid>
           </Grid>
