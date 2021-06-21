@@ -6,6 +6,7 @@ import Typography from '@material-ui/core/Typography'
 import ButtonBase from '@material-ui/core/ButtonBase'
 import { Box, CardActionArea } from '@material-ui/core'
 import { ShoppingCartOutlined } from '@material-ui/icons'
+import { useRouter } from 'next/router'
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -15,6 +16,7 @@ const useStyles = makeStyles(theme => ({
     padding: theme.spacing(2),
     margin: 'auto',
     maxWidth: 500,
+    padding: 30,
   },
   image: {
     width: 128,
@@ -55,6 +57,7 @@ export default function CardAmazon({
   // bestSeller,
 }) {
   const classes = useStyles()
+  const router = useRouter()
 
   return (
     <div className={classes.root}>
@@ -75,23 +78,7 @@ export default function CardAmazon({
                 <Typography gutterBottom variant='subtitle1'>
                   {titleProduct}
                 </Typography>
-                {/* {!bestSeller ? (
-                    <Typography
-                      variant='body2'
-                      className={classes.amazonChoice}
-                    >
-                      <strong>Amazon's Choice</strong>
-                    </Typography>
-                  ) : (
-                    <Typography
-                      variant='body2'
-                      className={classes.amazonBestSeller}
-                    >
-                      <strong>Best Seller</strong>
-                    </Typography>
-                  )} */}
-
-                <ButtonBase>
+                <ButtonBase onClick={() => router.push('https://amz.run/4eIU')}>
                   <Typography variant='body2' className={classes.buy}>
                     <ShoppingCartOutlined
                       fontSize='small'
@@ -103,7 +90,7 @@ export default function CardAmazon({
               </Grid>
             </Grid>
             <Grid item>
-              <Typography variant='subtitle1'>${price}</Typography>
+              <Typography variant='subtitle1'>€{price}</Typography>
             </Grid>
           </Grid>
         </Grid>

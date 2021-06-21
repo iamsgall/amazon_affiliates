@@ -23,8 +23,8 @@ import { useRouter } from 'next/router'
 const useStyles = makeStyles(theme => ({
   root: {
     maxWidth: 320,
-    marginTop: 20,
-    marginBottom: 20,
+    marginTop: 40,
+    marginBottom: 40,
   },
   media: {
     height: 0,
@@ -46,6 +46,18 @@ const useStyles = makeStyles(theme => ({
   },
   euro: {
     color: green[700],
+  },
+  title: {
+    fontFamily: 'DM Sans',
+    fontWeight: 500,
+    color: '#012D34',
+    lineHeight: '160%',
+  },
+  body: {
+    fontFamily: 'DM Sans',
+    fontWeight: 400,
+    lineHeight: '160%',
+    fontSize: 14.5,
   },
 }))
 export default function ProductAmazonCard({ product }) {
@@ -95,7 +107,11 @@ export default function ProductAmazonCard({ product }) {
                   AC
                 </Avatar>
               }
-              title={titleProduct}
+              title={
+                <Typography variant='body2' className={classes.title}>
+                  {titleProduct}
+                </Typography>
+              }
               subheader="Amazon's
           Choice"
             />
@@ -103,20 +119,25 @@ export default function ProductAmazonCard({ product }) {
             <CardHeader
               avatar={
                 <Avatar aria-label='recipe' className={classes.avatarBS}>
-                  BS
+                  MV
                 </Avatar>
               }
               title={titleProduct}
-              subheader='Best Seller'
+              subheader='Más Vendido'
             />
           )}
           <CardMedia
             className={classes.media}
             image={`https:${thumbnail2.fields.file.url}`}
-            title='Paella dish'
+            title='Tapo C200'
           />
           <CardContent style={{ marginTop: 8, marginBottom: 8 }}>
-            <Typography variant='body2' color='textSecondary' component='p'>
+            <Typography
+              variant='body2'
+              color='secondary'
+              component='p'
+              className={classes.body}
+            >
               {productDescription}
             </Typography>
           </CardContent>
@@ -159,7 +180,7 @@ export default function ProductAmazonCard({ product }) {
             </Grid>
             <Grid item xs={4} sm={4} md={4} lg={4} style={{ marginBottom: 6 }}>
               <Typography variant='body2' color='textSecondary'>
-                {rating}.5 / 5
+                {rating.toFixed(1)} / 5
               </Typography>
             </Grid>
             <Grid item xs={4} sm={4} md={4} lg={4} style={{ marginBottom: 6 }}>

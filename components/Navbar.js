@@ -17,6 +17,8 @@ const useStyles = makeStyles(theme => ({
   },
   title: {
     flexGrow: 1,
+    fontFamily: 'Cabin Condensed',
+    fontWeight: 600,
   },
 }))
 
@@ -25,7 +27,7 @@ export default function Navbar() {
 
   return (
     <div className={classes.root}>
-      <AppBar position='static'>
+      <AppBar position='static' color='primary'>
         <Toolbar>
           {/* <IconButton
             edge='start'

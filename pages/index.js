@@ -17,9 +17,16 @@ const useStyles = makeStyles(theme => ({
   },
   title: {
     marginTop: 40,
+    fontFamily: 'Cabin Condensed',
+    fontWeight: 600,
+    color: '#012D34',
   },
   body: {
     marginTop: 20,
+    fontFamily: 'DM Sans',
+    fontWeight: 400,
+    lineHeight: '160%',
+    fontSize: 18,
   },
   categoryItems: {
     marginTop: 20,
@@ -35,25 +42,28 @@ export default function Home() {
     <Layout title='test' description='test'>
       <div className={classes.root}>
         <CssBaseline />
-        <Container maxWidth='lg'>
+        <Container maxWidth='md'>
           <Typography
             variant='h2'
             component='h1'
             align='center'
             className={classes.title}
           >
-            Lorem ipsum dolor sit amet.
+            La mejor web de afiliacion con Amazon.
           </Typography>
           <Typography variant='body1' className={classes.body}>
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Laboriosam,
-            magni. Aut ullam amet, reiciendis, animi deserunt suscipit iste quos
-            unde ducimus sit tenetur quia similique, dolorem repellat a fugiat
-            tempora necessitatibus dignissimos earum quasi ab eveniet! Officiis,
-            culpa laboriosam hic harum, nulla esse ex eveniet quibusdam eos
-            vitae dignissimos veritatis quasi praesentium non est odio ipsam
-            dolorem recusandae, fugit repudiandae? Repellendus fugit nihil
-            praesentium fugiat impedit itaque, similique id at mollitia quam
-            iure beatae eveniet! Repellendus esse voluptatem deleniti officiis.
+            Un texto es una composición de signos codificados en un sistema de
+            escritura que forma una unidad de sentido. También es una
+            composición de caracteres imprimibles (con grafema) generados por un
+            algoritmo de cifrado que, aunque no tienen sentido para cualquier
+            persona, sí puede ser descifrado por su destinatario original. En
+            otras palabras, un texto es un entramado de signos con una intención
+            comunicativa que adquiere sentido en determinado contexto. Las ideas
+            que comunica un texto están contenidas en lo que se suele denominar
+            «macroproposiciones», unidades estructurales de nivel superior o
+            global, que otorgan coherencia al texto constituyendo su hilo
+            central, el esqueleto estructural que cohesiona elementos
+            lingüísticos formales de alto nivel, como los títulos y subtítulos,
           </Typography>
           <Typography
             variant='h4'

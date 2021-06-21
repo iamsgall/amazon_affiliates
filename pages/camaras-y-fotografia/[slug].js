@@ -18,6 +18,7 @@ import CardImages from '../../components//CardImages'
 import Link from 'next/link'
 import Skeleton from '../../components/Skeleton'
 import ListImages from '../../components/ListImages'
+import Disqus from '../../components/Disqus'
 
 const client = createClient({
   space: process.env.CONTENTFUL_SPACE_ID,
@@ -69,29 +70,46 @@ const useStyles = makeStyles(theme => ({
     flexGrow: 1,
   },
   title: {
-    marginTop: 40,
+    marginTop: 60,
+    marginBottom: 30,
+    fontFamily: 'Cabin Condensed',
+    fontWeight: 600,
+    color: '#012D34',
   },
-  body: {
-    marginTop: 20,
+  title2: {
+    fontFamily: 'Cabin Condensed',
+    fontWeight: 400,
+    color: '#012D34',
   },
   banner: {
-    marginTop: 20,
     display: 'flex',
     justifyContent: 'center',
     backgroundSize: 'cover',
     backgroundRepeat: 'no-repeat',
   },
+  body: {
+    marginTop: 40,
+    marginBottom: 40,
+    fontFamily: 'DM Sans',
+    fontWeight: 400,
+    lineHeight: '160%',
+    fontSize: 18,
+  },
   images: {
-    marginTop: 20,
+    marginTop: 40,
+    marginBottom: 40,
   },
   characteristics: {
     marginTop: 40,
+    marginBottom: 40,
   },
   cardAmazon: {
-    marginTop: 20,
+    marginTop: 40,
+    marginBottom: 40,
   },
   advantages: {
     marginTop: 40,
+    marginBottom: 40,
   },
   image: {
     marginTop: 40,
@@ -102,16 +120,23 @@ const useStyles = makeStyles(theme => ({
   },
   disadvantages: {
     marginTop: 40,
+    marginBottom: 40,
   },
   offers: {
-    marginTop: 20,
+    marginTop: 40,
+    marginBottom: 40,
   },
   colors: {
-    marginTop: 20,
+    marginTop: 40,
+    marginBottom: 40,
+  },
+  forWho: {
+    marginTop: 40,
+    marginBottom: 40,
   },
   brands: {
-    marginTop: 20,
-    marginBottom: 20,
+    marginTop: 40,
+    marginBottom: 40,
   },
 }))
 
@@ -136,6 +161,13 @@ const imagesData = [
     brand: 'eufy',
     price: '49.99',
     url: 'https://amz.run/4e3l',
+  },
+  {
+    imageUrl:
+      'https://images-na.ssl-images-amazon.com/images/I/618Rh8Da7uL._AC_SL1500_.jpg',
+    brand: 'Wansview',
+    price: '26.98',
+    url: 'https://amz.run/4eJ3',
   },
 ]
 
@@ -171,7 +203,7 @@ export default function CamaraYFotografiaDetails({ product }) {
     url,
   } = product.fields
 
-  // console.log(thumbnail2)
+  console.log(product.sys.id)
 
   const classes = useStyles()
   return (
@@ -195,7 +227,7 @@ export default function CamaraYFotografiaDetails({ product }) {
             />
           </div>
           <span className={classes.banner}></span>
-          <Typography variant='body1' className={classes.body} component='span'>
+          <Typography variant='body1' className={classes.body} component='p'>
             {documentToReactComponents(contentTitle)}
           </Typography>
           <div className={classes.images}>
@@ -203,7 +235,7 @@ export default function CamaraYFotografiaDetails({ product }) {
             <Container maxWidth='md'>
               <Grid
                 container
-                spacing={2}
+                spacing={3}
                 direction='row'
                 justify='center'
                 alignItems='center'
@@ -219,13 +251,14 @@ export default function CamaraYFotografiaDetails({ product }) {
             </Container>
           </div>
           <div className={classes.characteristics}>
-            <Typography variant='h2' align='center'>
+            <Typography variant='h2' align='left' className={classes.title2}>
               {characteristicsH2}
             </Typography>
             <Typography
               variant='body1'
               className={classes.body}
               component='span'
+              color='secondary'
             >
               {documentToReactComponents(contentCharacteristics)}
             </Typography>
@@ -235,11 +268,10 @@ export default function CamaraYFotografiaDetails({ product }) {
               thumbnail2={thumbnail2}
               titleProduct={titleProduct}
               price={price.toFixed(2)}
-              // bestSeller={bestSeller}
             />
           </div>
           <div className={classes.advantages}>
-            <Typography variant='h2' align='center'>
+            <Typography variant='h2' align='left' className={classes.title2}>
               {advantagesH2}
             </Typography>
             <Typography
@@ -252,7 +284,7 @@ export default function CamaraYFotografiaDetails({ product }) {
           </div>
           <div className={classes.image}>
             <Paper elevation={2}>
-              <Link href='/'>
+              <Link href='https://amz.run/4eIU'>
                 <a>
                   <Image
                     src={`https:${thumbnail2.fields.file.url}`}
@@ -264,7 +296,7 @@ export default function CamaraYFotografiaDetails({ product }) {
             </Paper>
           </div>
           <div className={classes.disadvantages}>
-            <Typography variant='h2' align='center'>
+            <Typography variant='h2' align='left' className={classes.title2}>
               {disadvantagesH2}
             </Typography>
             <Typography
@@ -286,14 +318,15 @@ export default function CamaraYFotografiaDetails({ product }) {
               </strong> 
             </p>
           </div> */}
-          <div className={classes.disadvantages}>
-            <Typography variant='h2' align='center'>
+          <div className={classes.forWho}>
+            <Typography variant='h2' align='left' className={classes.title2}>
               {forWhoH2}
             </Typography>
             <Typography
               variant='body1'
               className={classes.body}
               component='span'
+              color='secondary'
             >
               {documentToReactComponents(forWhoContent)}
             </Typography>
@@ -311,14 +344,23 @@ export default function CamaraYFotografiaDetails({ product }) {
           <div className={classes.brands}>
             <CssBaseline />
             <Container maxWidth='sm'>
-              <Typography variant='h2' align='center'>
+              <Typography
+                variant='h2'
+                align='center'
+                className={classes.title2}
+              >
                 {brandsH2}
               </Typography>
-              <Box boxShadow={1}>
+              <Box boxShadow={1} className={classes.brands}>
                 <ListImages imagesData={imagesData} />
               </Box>
             </Container>
           </div>
+          <Disqus
+            url={`https://amazon-affiliates.vercel.app/camaras-y-fotografia/${slug}`}
+            identifier={product.sys.id}
+            title='Tapo C200'
+          />
         </Container>
       </div>
     </Layout>
